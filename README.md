@@ -18,4 +18,4 @@
 
 Tips： 先观察球洞与障碍位置再出杆；优先尝试稳定路线；遇到复杂关卡时可利用边界反弹修正路径。
 
-【技术介绍】 使用基于 Cocos 引擎的 Cocos Creator 3.8.8 开发的 H5 游戏，主要语言为 JavaScript，构建平台为 web-mobile。项目入口为 index.html，运行时通过 SystemJS 加载 cocos-js/cc.js 与资源配置，设计分辨率为 1280 × 720，支持 PC 和移动端浏览器。
+【技术介绍】 使用基于 Cocos 引擎的 Cocos Creator 3.8.8 开发的 H5 游戏，主要语言为 JavaScript，构建平台为 web-mobile。项目入口为 index.html，运行时通过 SystemJS 加载 cocos-js/cc.js 与资源配置，支持 PC 和移动端浏览器。

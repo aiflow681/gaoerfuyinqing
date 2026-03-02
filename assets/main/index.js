@@ -590,7 +590,7 @@ System.register("chunks:///_virtual/LevelConfigs.ts", ["cc"], function (_export,
         }, {
           x: -260,
           y: -160,
-          w: 820,
+          w: 600,
           h: 30
         }, {
           x: -140,
@@ -1077,8 +1077,10 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
           this.menuListHighlightG = menuListHighlightNode.addComponent(Graphics);
           this.menuHeroBadgeLabel = this.createLabel(this.menuRoot, new Vec3(-330, 206, 0), 16, new Color(163, 116, 22), "阳光球场联赛", 300, HorizontalTextAlignment.LEFT);
           this.menuHeroBadgeLabel.lineHeight = 20;
+          this.menuHeroBadgeLabel.node.active = false;
           this.menuGameTitleLabel = this.createLabel(this.menuRoot, new Vec3(-274, 170, 0), 42, new Color(31, 42, 60), "阳光高尔夫", 390, HorizontalTextAlignment.LEFT);
           this.menuGameSubLabel = this.createLabel(this.menuRoot, new Vec3(-274, 132, 0), 18, new Color(104, 117, 139), "轻竞技闯关｜反弹路线｜星级挑战", 390, HorizontalTextAlignment.LEFT);
+          this.menuGameSubLabel.node.active = false;
           this.menuSelectedTitleLabel = this.createLabel(this.menuRoot, new Vec3(-274, 86, 0), 28, new Color(31, 42, 60), "第1关 晨光练习场", 390, HorizontalTextAlignment.LEFT);
           this.menuSelectedMetaLabel = this.createLabel(this.menuRoot, new Vec3(-274, 48, 0), 20, new Color(80, 94, 116), "标准杆 2｜已解锁", 390, HorizontalTextAlignment.LEFT);
           this.menuSelectedBestLabel = this.createLabel(this.menuRoot, new Vec3(-274, 12, 0), 20, new Color(51, 74, 116), "最佳成绩：暂无｜星级：☆☆☆", 390, HorizontalTextAlignment.LEFT);
@@ -1087,6 +1089,7 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
           this.menuProgressLabel = this.createLabel(this.menuRoot, new Vec3(-274, -66, 0), 20, new Color(204, 127, 24), "累计星级 0/24", 390, HorizontalTextAlignment.LEFT);
           this.menuListHeaderLabel = this.createLabel(this.menuRoot, new Vec3(220, 203, 0), 26, new Color(41, 54, 78), "关卡选择", 430, HorizontalTextAlignment.LEFT);
           this.menuListTipLabel = this.createLabel(this.menuRoot, new Vec3(220, 170, 0), 16, new Color(111, 126, 149), "使用“上一关 / 下一关”切换已解锁关卡", 430, HorizontalTextAlignment.LEFT);
+          this.menuListTipLabel.node.active = false;
           this.menuListLabel = this.createLabel(this.menuRoot, new Vec3(220, 17, 0), 18, new Color(56, 72, 95), "", 440, HorizontalTextAlignment.LEFT);
           this.menuListLabel.lineHeight = 34;
           this.menuListLabel.verticalAlign = VerticalTextAlignment.TOP;
@@ -1244,16 +1247,7 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
             var unlocked = level.id <= this.saveData.unlockedLevel;
 
             if (isSelected) {
-              g.fillColor = new Color(255, 228, 151, 150);
-              g.roundRect(left, rowBottom, rowWidth, rowRectHeight, 10);
-              g.fill();
-              g.strokeColor = new Color(236, 176, 54, 240);
-              g.lineWidth = 2;
-              g.roundRect(left, rowBottom, rowWidth, rowRectHeight, 10);
-              g.stroke();
-              g.fillColor = new Color(247, 171, 45, 255);
-              g.roundRect(left + 8, rowBottom + 5, 6, rowRectHeight - 10, 4);
-              g.fill();
+              // Selected row highlight removed per UI request.
             } else if (unlocked) {
               g.fillColor = new Color(255, 255, 255, 52);
               g.roundRect(left, rowBottom, rowWidth, rowRectHeight, 10);
@@ -1659,9 +1653,7 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
           this.setButtonVisible(this.startBtn, false);
           this.setButtonVisible(this.prevBtn, false);
           this.setButtonVisible(this.nextBtn, true);
-          this.setButtonText(this.nextBtn, level.id >= (_crd && LEVEL_CONFIGS === void 0 ? (_reportPossibleCrUseOfLEVEL_CONFIGS({
-            error: Error()
-          }), LEVEL_CONFIGS) : LEVEL_CONFIGS).length ? "完成" : "下一关");
+          this.setButtonText(this.nextBtn, "下一关");
           this.setButtonVisible(this.restartBtn, true);
           this.setButtonVisible(this.menuBtn, true);
           this.miniMsgLabel.string = "进洞成功";
