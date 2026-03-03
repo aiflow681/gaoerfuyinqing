@@ -2,15 +2,15 @@ System.register("chunks:///_virtual/reporter.js", [], function (_export, _contex
   "use strict";
 
   /**
-   * This is the module which implements circular-reference detection.
+   * 该模块用于检测循环引用。
    */
 
   /**
-   * Reports a circular reference error fired by module import.
-   * @param imported The binding of the import.
-   * @param moduleRequest The module request of the import.
-   * @param importMeta The import.meta of the source module.
-   * @param extras Extra data passed by circular reference detection implementation.
+   * 上报由模块导入触发的循环引用错误。
+   * 参数一：导入绑定名称。
+   * 参数二：导入请求路径。
+   * 参数三：来源模块元信息。
+   * 参数四：循环引用检测附加数据。
    */
   function report(imported, moduleRequest, importMeta, extras) {
     console.warn("Found possible circular reference in \"" + importMeta.url + "\", happened when use \"" + imported + "\" imported from \"" + moduleRequest + "\" ", extras.error);
@@ -23,7 +23,6 @@ System.register("chunks:///_virtual/reporter.js", [], function (_export, _contex
     execute: function () {}
   };
 });
-//# sourceMappingURL=6a5019a719a9014c047e67aa1cf34453ab8392ce.js.map
 
 System.register("chunks:///_virtual/LevelConfigs.ts", ["cc"], function (_export, _context) {
   "use strict";
@@ -713,7 +712,6 @@ System.register("chunks:///_virtual/LevelConfigs.ts", ["cc"], function (_export,
     }
   };
 });
-//# sourceMappingURL=2f85dad77871a0c1a48e379a3e34737a6981ce50.js.map
 
 System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./LevelConfigs.ts"], function (_export, _context) {
   "use strict";
@@ -1247,7 +1245,7 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
             var unlocked = level.id <= this.saveData.unlockedLevel;
 
             if (isSelected) {
-              // Selected row highlight removed per UI request.
+              // 按界面需求移除选中行高亮。
             } else if (unlocked) {
               g.fillColor = new Color(255, 255, 255, 52);
               g.roundRect(left, rowBottom, rowWidth, rowRectHeight, 10);
@@ -2106,7 +2104,6 @@ System.register("chunks:///_virtual/SunGolfGame.ts", ["./reporter.js", "cc", "./
     }
   };
 });
-//# sourceMappingURL=d0017bc1bb8a6f33ba7518bc4edc98f99d3f12ca.js.map
 
 System.register("chunks:///_virtual/main", ["./LevelConfigs.ts", "./SunGolfGame.ts"], function () {
   return {

@@ -53,7 +53,7 @@
       }
     }
 
-    // Windows file URLs may vary only by drive-letter/path casing (e.g. d: vs D:).
+    // 本地文件链接可能仅在盘符或路径大小写上不同，这里做兼容处理。
     var pathnameLower = pathname.toLowerCase();
     var basePathnameLower = basePathname.toLowerCase();
     if (pathnameLower.indexOf(basePathnameLower) === 0) {
@@ -73,7 +73,7 @@
       return trimmed;
     }
 
-    // Last resort: match by pathname suffix so absolute file URLs still work.
+    // 兜底处理：按路径后缀匹配，确保绝对路径也能命中资源。
     for (var key in resourceTable) {
       if (!hasOwn.call(resourceTable, key)) {
         continue;
@@ -166,7 +166,7 @@
         evt.target = evt.target || null;
         evt.currentTarget = evt.currentTarget || null;
       } catch (e2) {
-        // ignore readonly event fields
+        // 只读事件字段赋值失败时直接忽略
       }
       return evt;
     }
@@ -177,7 +177,7 @@
         evt.target = xhr;
         evt.currentTarget = xhr;
       } catch (e) {
-        // ignore readonly event fields
+        // 只读事件字段赋值失败时直接忽略
       }
 
       var handler = xhr['on' + type];
@@ -207,7 +207,7 @@
         try {
           return new TextDecoder('utf-8').decode(bytes);
         } catch (e) {
-          // fallback below
+          // 解码失败时走下方兜底逻辑
         }
       }
       var out = '';
