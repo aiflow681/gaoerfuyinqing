@@ -1,4 +1,4 @@
-import {
+﻿import {
   _decorator,
   Color,
   Component,
@@ -67,7 +67,6 @@ export class SunGolfGame extends Component {
   private menuListLabel!: Label;
   private menuListHighlightG!: Graphics;
   private menuGameTitleLabel!: Label;
-  private menuGameSubLabel!: Label;
   private menuSelectedTitleLabel!: Label;
   private menuSelectedMetaLabel!: Label;
   private menuSelectedBestLabel!: Label;
@@ -75,7 +74,6 @@ export class SunGolfGame extends Component {
   private menuProgressLabel!: Label;
   private menuListHeaderLabel!: Label;
   private menuListTipLabel!: Label;
-  private menuHeroBadgeLabel!: Label;
   private hudLevelLabel!: Label;
   private hudStrokeLabel!: Label;
   private hudParLabel!: Label;
@@ -198,7 +196,7 @@ export class SunGolfGame extends Component {
   }
 
   private buildHud() {
-    const topBar = new Node("顶部信息条");
+    const topBar = new Node("TopBar");
     this.hudTopBarNode = topBar;
     topBar.parent = this.uiLayer;
     topBar.setPosition(0, 314, 0);
@@ -215,7 +213,7 @@ export class SunGolfGame extends Component {
     topG.roundRect(-590, -37, 1180, 74, 26);
     topG.stroke();
 
-    const bottomBar = new Node("底部提示条");
+    const bottomBar = new Node("BottomBar");
     this.hudBottomBarNode = bottomBar;
     bottomBar.parent = this.uiLayer;
     bottomBar.setPosition(0, -318, 0);
@@ -232,9 +230,11 @@ export class SunGolfGame extends Component {
     bottomG.roundRect(-590, -41, 1180, 82, 24);
     bottomG.stroke();
 
-    this.hudLevelLabel = this.createLabel(this.uiLayer, new Vec3(-560, 325, 0), 28, new Color(32, 42, 58), "阳光高尔夫", 680, HorizontalTextAlignment.LEFT);
-    this.hudStrokeLabel = this.createLabel(this.uiLayer, new Vec3(-180, 325, 0), 28, new Color(32, 42, 58), "杆数");
-    this.hudParLabel = this.createLabel(this.uiLayer, new Vec3(110, 325, 0), 28, new Color(32, 42, 58), "标准杆");
+    this.hudLevelLabel = this.createLabel(this.uiLayer, new Vec3(-398, 325, 0), 28, new Color(32, 42, 58), "阳光高尔夫", 340, HorizontalTextAlignment.LEFT);
+    this.hudLevelLabel.overflow = Label.Overflow.SHRINK;
+    this.hudLevelLabel.node.getComponent(UITransform)?.setContentSize(340, 62);
+    this.hudStrokeLabel = this.createLabel(this.uiLayer, new Vec3(-88, 325, 0), 28, new Color(32, 42, 58), "杆数");
+    this.hudParLabel = this.createLabel(this.uiLayer, new Vec3(170, 325, 0), 28, new Color(32, 42, 58), "标准杆");
     this.hudBestLabel = this.createLabel(this.uiLayer, new Vec3(410, 325, 0), 28, new Color(32, 42, 58), "最佳");
     this.hudStarLabel = this.createLabel(this.uiLayer, new Vec3(0, -295, 0), 20, new Color(62, 78, 102), "星级", 1100);
     this.miniMsgLabel = this.createLabel(this.uiLayer, new Vec3(0, 292, 0), 22, new Color(230, 119, 54), "", 760);
@@ -285,11 +285,11 @@ export class SunGolfGame extends Component {
     panel.addComponent(UITransform).setContentSize(1020, 568);
     this.overlayPanelG = panel.addComponent(Graphics);
 
-    this.menuRoot = new Node("开始页布局");
+    this.menuRoot = new Node("寮€濮嬮〉甯冨眬");
     this.menuRoot.parent = panel;
     this.menuRoot.addComponent(UITransform).setContentSize(1020, 568);
 
-    const menuBg = new Node("开始页布局背景");
+    const menuBg = new Node("寮€濮嬮〉甯冨眬鑳屾櫙");
     menuBg.parent = this.menuRoot;
     menuBg.addComponent(UITransform).setContentSize(1020, 568);
     const menuBgG = menuBg.addComponent(Graphics);
@@ -332,15 +332,12 @@ export class SunGolfGame extends Component {
     menuBgG.roundRect(-488, -262, 962, 118, 20);
     menuBgG.stroke();
 
-    const menuListHighlightNode = new Node("关卡列表高亮");
+    const menuListHighlightNode = new Node("鍏冲崱鍒楄〃楂樹寒");
     menuListHighlightNode.parent = this.menuRoot;
     menuListHighlightNode.addComponent(UITransform).setContentSize(1020, 568);
     this.menuListHighlightG = menuListHighlightNode.addComponent(Graphics);
 
-    this.menuHeroBadgeLabel = this.createLabel(this.menuRoot, new Vec3(-330, 206, 0), 16, new Color(163, 116, 22), "阳光球场联赛", 300, HorizontalTextAlignment.LEFT);
-    this.menuHeroBadgeLabel.lineHeight = 20;
     this.menuGameTitleLabel = this.createLabel(this.menuRoot, new Vec3(-274, 170, 0), 42, new Color(31, 42, 60), "阳光高尔夫", 390, HorizontalTextAlignment.LEFT);
-    this.menuGameSubLabel = this.createLabel(this.menuRoot, new Vec3(-274, 132, 0), 18, new Color(104, 117, 139), "轻竞技闯关｜反弹路线｜星级挑战", 390, HorizontalTextAlignment.LEFT);
     this.menuSelectedTitleLabel = this.createLabel(this.menuRoot, new Vec3(-274, 86, 0), 28, new Color(31, 42, 60), "第1关 晨光练习场", 390, HorizontalTextAlignment.LEFT);
     this.menuSelectedMetaLabel = this.createLabel(this.menuRoot, new Vec3(-274, 48, 0), 20, new Color(80, 94, 116), "标准杆 2｜已解锁", 390, HorizontalTextAlignment.LEFT);
     this.menuSelectedBestLabel = this.createLabel(this.menuRoot, new Vec3(-274, 12, 0), 20, new Color(51, 74, 116), "最佳成绩：暂无｜星级：☆☆☆", 390, HorizontalTextAlignment.LEFT);
@@ -361,7 +358,7 @@ export class SunGolfGame extends Component {
     this.levelListLabel.verticalAlign = VerticalTextAlignment.TOP;
     this.levelListLabel.node.getComponent(UITransform)?.setContentSize(900, 260);
 
-    this.startBtn = this.createButton(panel, "开始游戏", new Vec3(-330, -214, 0), new Vec2(240, 66), new Color(250, 188, 66), () => {
+    this.startBtn = this.createButton(panel, "开始第 1 关", new Vec3(-330, -214, 0), new Vec2(240, 66), new Color(250, 188, 66), () => {
       if (this.phase === "menu") this.startLevel(this.currentLevelIndex);
       else this.restartLevel();
     });
@@ -474,10 +471,8 @@ export class SunGolfGame extends Component {
     const bestText = bestScore == null ? "暂无记录" : `${bestScore}杆`;
     const starsText = bestStars == null ? "☆☆☆" : this.formatStars(bestStars);
 
-    this.menuHeroBadgeLabel.string = unlocked ? "阳光球场联赛｜已解锁关卡" : "阳光球场联赛｜待解锁关卡";
     this.menuGameTitleLabel.string = "阳光高尔夫";
-    this.menuGameSubLabel.string = `第${level.id}关焦点：${level.name}`;
-    this.menuSelectedTitleLabel.string = `第${level.id}关  ${level.name}`;
+    this.menuSelectedTitleLabel.string = `第${level.id}关 ${level.name}`;
     this.menuSelectedMetaLabel.string = `标准杆 ${level.par}｜最大杆数 ${level.maxStrokes}｜${unlocked ? "已解锁" : "未解锁"}`;
     this.menuSelectedBestLabel.string = `最佳成绩：${bestText}｜最佳星级：${starsText}`;
     this.menuSelectedRuleLabel.string = this.getStarRuleText(level);
@@ -503,21 +498,9 @@ export class SunGolfGame extends Component {
     for (let i = 0; i < LEVEL_CONFIGS.length; i++) {
       const level = LEVEL_CONFIGS[i];
       const rowBottom = top - rowHeight * (i + 1) + 2;
-      const isSelected = i === this.currentLevelIndex;
       const unlocked = level.id <= this.saveData.unlockedLevel;
 
-      if (isSelected) {
-        g.fillColor = new Color(255, 228, 151, 150);
-        g.roundRect(left, rowBottom, width + 20, rowHeight - 4, 10);
-        g.fill();
-        g.strokeColor = new Color(236, 176, 54, 240);
-        g.lineWidth = 2;
-        g.roundRect(left, rowBottom, width + 20, rowHeight - 4, 10);
-        g.stroke();
-        g.fillColor = new Color(247, 171, 45, 255);
-        g.roundRect(left + 8, rowBottom + 5, 6, rowHeight - 14, 4);
-        g.fill();
-      } else if (unlocked) {
+      if (unlocked) {
         g.fillColor = new Color(255, 255, 255, 52);
         g.roundRect(left, rowBottom, width + 20, rowHeight - 4, 10);
         g.fill();
@@ -553,7 +536,7 @@ export class SunGolfGame extends Component {
     this.setButtonText(this.startBtn, `开始第 ${this.currentLevelIndex + 1} 关`);
     this.miniMsgLabel.string = "";
     this.hudPowerLabel.string = "在菜单中选择已解锁关卡开始挑战";
-    this.hudStarLabel.string = "星级规则：3星≤标准杆，2星≤标准杆+1，完成即至少1星";
+    this.hudStarLabel.string = "星级规则：3星≤标准杆，2星≤标准杆+1，完成即可至少1星";
     this.updateHud();
     this.redrawFx();
   }
@@ -766,7 +749,7 @@ export class SunGolfGame extends Component {
   }
 
   private getStarRuleText(level: LevelConfig): string {
-    return `3星：≤标准杆(${level.par})｜2星：≤${level.par + 1}杆｜1星：完成即可`;
+    return `3星：<=标准杆(${level.par})｜2星：<=${level.par + 1}杆｜1星：完成即可`;
   }
 
   private simulateBall(dt: number, level: LevelConfig) {
@@ -907,8 +890,8 @@ export class SunGolfGame extends Component {
     this.setOverlayMenuLayoutActive(false);
 
     this.overlayTitle.string = "本关完成";
-    this.overlayDesc.string = `第${level.id}关 ${level.name}｜${this.strokes}杆（标准杆 ${level.par}）｜${rating}${isNewBest ? "｜刷新最佳" : ""}`;
-    this.levelListLabel.string = `本关星级：${this.formatStars(stars)}\n${this.getStarRuleText(level)}\n累计星级：${this.getTotalEarnedStars()}/${LEVEL_CONFIGS.length * 3}`;
+    this.overlayDesc.string = `Level ${level.id} ${level.name} | ${this.strokes} strokes (par ${level.par}) | ${rating}${isNewBest ? " | New best" : ""}`;
+    this.levelListLabel.string = `Stars: ${this.formatStars(stars)}\n${this.getStarRuleText(level)}\nTotal stars: ${this.getTotalEarnedStars()}/${LEVEL_CONFIGS.length * 3}`;
     this.setButtonVisible(this.startBtn, false);
     this.setButtonVisible(this.prevBtn, false);
     this.setButtonVisible(this.nextBtn, true);
@@ -916,7 +899,7 @@ export class SunGolfGame extends Component {
     this.setButtonVisible(this.restartBtn, true);
     this.setButtonVisible(this.menuBtn, true);
     this.miniMsgLabel.string = "进洞成功";
-    this.hudStarLabel.string = `本次获得 ${this.formatStars(stars)}｜${this.getStarRuleText(level)}`;
+    this.hudStarLabel.string = `本次获得 ${this.formatStars(stars)} | ${this.getStarRuleText(level)}`;
   }
 
   private finishLevelLose() {
@@ -1347,7 +1330,8 @@ export class SunGolfGame extends Component {
     try {
       sys.localStorage.setItem(this.saveKey, JSON.stringify(this.saveData));
     } catch {
-      // 某些受限环境可能禁用本地存储，这里忽略写入失败
+      // Ignore storage write errors in restricted environments.
     }
   }
 }
+
